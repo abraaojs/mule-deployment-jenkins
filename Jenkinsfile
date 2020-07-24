@@ -29,10 +29,12 @@ pipeline {
     //}
 
   stages {
-
     stage('Git Checkout') {
-      steps {
+    try {
+        //git credentialsId: 'git-token', url: ''
         checkout scm
+    } catch(err) {
+        sh "echo error ao fazer checkout!"
     }
 
     stage('Unit Test') {
