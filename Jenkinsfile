@@ -5,7 +5,6 @@ pipeline {
   }
   environment {
       CI = 'true'
-      echo "branch: ${env.BRANCH_NAME}"
       BUILD_VERSION = "v${currentBuild.number}.RELEASE"
       DEPLOY_CREDS = credentials('anypoint.credentials')
   }
