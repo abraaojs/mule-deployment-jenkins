@@ -30,12 +30,10 @@ pipeline {
     //}
 
   stages {
+
     stage('Git Checkout') {
-        try {
-            //git credentialsId: 'git-token', url: ''
-            checkout scm
-        } catch(err) {
-            sh "echo error ao fazer checkout!"
+      steps {
+        checkout scm
     }
 
     stage('Unit Test') {
@@ -91,5 +89,7 @@ pipeline {
         }
        }
     } // deploy PROD
-  }
+
+ } // end stages
+}
 }//  end pipeline
