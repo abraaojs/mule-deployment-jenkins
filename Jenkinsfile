@@ -1,5 +1,8 @@
 pipeline {
   agent any
+  environment {
+   tool name: 'M2', type: 'maven'
+  }
   stages {
     stage('Unit Test') {
       steps {
