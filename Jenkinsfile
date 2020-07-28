@@ -1,9 +1,18 @@
 pipeline {
   agent any
   environment {
+   BUILD_VERSION = "v${currentBuild.number}.RELEASE"
+   ANYPOINT_CREDENTIALS = credentials('anypoint.credentials')
    tool name: 'M2', type: 'maven'
   }
   stages {
+    stage('Git Checkout') {
+    try {
+        //git credentialsId: 'git-token', url: ''
+        checkout scm
+    } catch(err) {
+        sh "echo error ao fazer checkout!"
+    }
     stage('Unit Test') {
       steps {
         sh 'mvn clean test'
