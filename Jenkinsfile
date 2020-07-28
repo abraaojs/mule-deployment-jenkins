@@ -36,12 +36,13 @@ pipeline {
     } catch(err) {
         sh "echo error ao fazer checkout!"
     }
-
-    stage('Unit Test') {
-      steps {
-        sh 'mvn clean test'
-      }
-    }
+    stage ('Build'){
+ 		steps {
+ 			withMaven(maven:'maven'){
+ 				sh 'mvn -f pom.xml clean install'
+ 			}
+ 		}
+ 	}
 
     stage('Deploy Dev') {
         environment {
@@ -94,3 +95,5 @@ pipeline {
  } // end stages
 }
 }//  end pipeline
+
+
