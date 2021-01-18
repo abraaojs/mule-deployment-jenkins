@@ -9,6 +9,7 @@ tools {
         sh 'mvn clean test'
       }
     }
+    
     stage('Deploy Standalone') {
       steps {
         sh 'mvn deploy -P standalone'
